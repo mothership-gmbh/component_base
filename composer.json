@@ -18,17 +18,8 @@
   "require-dev": {
     "phpunit/phpunit": "4.8"
   },
+  "minimum-stability" : "dev",
   "autoload": {
     "psr-0": { "Mothership\\": "src/" }
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "http://packages.firegento.com"
-    },
-    {
-      "type": "vcs",
-      "url": "http://31.7.180.210:8050/scm/ms/component_feed.git"
-    }
-  ]
+  }
 }
