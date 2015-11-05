@@ -5,7 +5,7 @@ The mothership base components
 Via composer add:
 ```
 "require": {
-    "mothership/component_base" : "0.1"
+    "mothership/component_base" : "0.1.*"
   }
 ```
 or
