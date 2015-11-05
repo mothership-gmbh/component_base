@@ -35,4 +35,3 @@ tests_db:
     stock_status: 3
     price: 23.98
     manufacturer: mothership
-  

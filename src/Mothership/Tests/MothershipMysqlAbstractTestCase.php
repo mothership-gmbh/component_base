@@ -30,13 +30,17 @@
 abstract class MothershipMysqlAbstractTestCase extends PHPUnit_Extensions_Database_TestCase
 {
 
-    // only instantiate pdo once for test clean-up/fixture load
     static private $pdo = null;
 
-    // only instantiate PHPUnit_Extensions_Database_DB_IDatabaseConnection once per test
     private $conn = null;
 
     protected $dataset;
+
+    /**
+     * Set the dataset file for the test
+     * @return mixed
+     */
+    abstract protected function setYamlDataSet();
 
     protected function setUp()
     {
@@ -93,8 +97,45 @@ abstract class MothershipMysqlAbstractTestCase extends PHPUnit_Extensions_Databa
     }
 
     /**
-     * Set the dataset file for the test
-     * @return mixed
+     * call private methods
+     *
+     * @param object &$object Object
+     * @param string $methodName methods
+     * @param array $parameters params
+     * @return mixed Method return.
      */
-    abstract protected function setYamlDataSet();
+    protected function invokeMethod(&$object, $methodName, array $parameters = array())
+    {
+        $reflection = new \ReflectionClass(get_class($object));
+        $method = $reflection->getMethod($methodName);
+        $method->setAccessible(true);
+        return $method->invokeArgs($object, $parameters);
+    }
+
+    /**
+     * get private property value
+     * @param type $object
+     * @param type $propertyName
+     * @return type
+     */
+    protected function getPropertyValue(&$object, $propertyName)
+    {
+        $reflection = new \ReflectionClass(get_class($object));
+        $property = $reflection->getProperty($propertyName);
+        $property->setAccessible(true);
+        return $property->getValue($object);
+    }
+
+    /**
+     * @param $object
+     * @param $propertyName
+     * @return string
+     */
+    protected function getPropertyClass(&$object, $propertyName)
+    {
+        $reflection = new \ReflectionClass(get_class($object));
+        $property = $reflection->getProperty($propertyName);
+        $property->setAccessible(true);
+        return get_class($property->getValue($object));
+    }
 }
