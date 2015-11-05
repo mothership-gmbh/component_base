@@ -17,12 +17,10 @@
   ],
   "require": {
     "php": ">=5.5",
-    "symfony/console": "dev-master"
-  },
-  "require-dev": {
+    "symfony/console": "dev-master",
     "phpunit/phpunit": "4.8",
-    "phpunit/dbunit": "dev-master" 
-},
+    "phpunit/dbunit": "dev-master"
+  },
   "minimum-stability" : "dev",
   "autoload": {
     "psr-0": { "Mothership\\": "src/" }
