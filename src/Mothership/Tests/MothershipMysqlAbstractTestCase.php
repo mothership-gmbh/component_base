@@ -29,7 +29,7 @@
 
 namespace Mothership\Tests;
 
-abstract class MothershipMysqlAbstractTestCase extends PHPUnit_Extensions_Database_TestCase
+abstract class MothershipMysqlAbstractTestCase extends \PHPUnit_Extensions_Database_TestCase
 {
 
     static private $pdo = null;

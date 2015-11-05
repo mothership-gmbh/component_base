@@ -28,7 +28,7 @@
  */
 namespace Mothership\Tests;
 
-class MothershipBaseTestCase extends PHPUnit_Framework_TestCase
+class MothershipBaseTestCase extends \PHPUnit_Framework_TestCase
 {
 
     /**
