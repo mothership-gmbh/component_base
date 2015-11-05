@@ -83,7 +83,7 @@ abstract class MothershipMysqlAbstractTestCase extends \PHPUnit_Extensions_Datab
      */
     protected function getDataSet()
     {
-        return new PHPUnit_Extensions_Database_DataSet_YamlDataSet($this->dataset);
+        return new \PHPUnit_Extensions_Database_DataSet_YamlDataSet($this->dataset);
     }
 
     public function tearDown() {
