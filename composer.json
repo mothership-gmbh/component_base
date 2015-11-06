@@ -19,7 +19,7 @@
     "php": ">=5.5",
     "symfony/console": "2.7.*",
     "phpunit/phpunit": "4.8",
-    "phpunit/dbunit": "dev-master"
+    "phpunit/dbunit": "1.4"
   },
   "minimum-stability" : "dev",
   "autoload": {
