@@ -36,6 +36,11 @@ abstract class MothershipMysqlAbstractTestCase extends \PHPUnit_Extensions_Datab
 
     private $conn = null;
 
+    /**
+     * This is the name of the dataset
+     *
+     * @var string
+     */
     protected $dataset;
 
     /**

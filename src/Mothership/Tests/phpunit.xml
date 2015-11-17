@@ -14,9 +14,9 @@
          stopOnSkipped="false"
         >
     <php>
-        <var name="DB_DSN" value="mysql:dbname=tests;host=localhost" />
-        <var name="DB_USER" value="root" />
-        <var name="DB_PASSWD" value="password" />
-        <var name="DB_DBNAME" value="tests" />
+        <var name="DB_DSN"    value="mysql:dbname=tests;host=localhost" />
+        <var name="DB_USER"   value="super" />
+        <var name="DB_PASSWD" value="super123" />
+        <var name="DB_DBNAME" value="phpunit_feed" />
     </php>
 </phpunit>

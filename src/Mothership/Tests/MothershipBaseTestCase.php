@@ -1,5 +1,7 @@
 <?php
 
+namespace Mothership\Tests;
+
 /**
  * Magento
  *
@@ -26,7 +28,7 @@
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  * @link      http://www.mothership.de/
  */
-namespace Mothership\Tests;
+
 
 class MothershipBaseTestCase extends \PHPUnit_Framework_TestCase
 {
@@ -48,10 +50,12 @@ class MothershipBaseTestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * get private property value
-     * @param type $object
-     * @param type $propertyName
-     * @return type
+     * Get private property value
+     *
+     * @param \Mothership\Component\Feed\Value\Decorator\DecoratorInterface $object
+     * @param string                                                        $propertyName
+     *
+     * @return string
      */
     protected function getPropertyValue(&$object, $propertyName)
     {
