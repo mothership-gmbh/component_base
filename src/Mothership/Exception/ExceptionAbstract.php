@@ -35,6 +35,10 @@ use Symfony\Component\Console\Output\OutputInterface;
 abstract class ExceptionAbstract extends Exception
 {
     protected $gravity; //score from 0 to 100 where 100 is the most dangerous
+
+    /**
+     * @var ConsoleOutput
+     */
     protected $output;
 
     /**
@@ -93,12 +97,15 @@ abstract class ExceptionAbstract extends Exception
         }
     }
 
+    /**
+     *
+     */
     public function alert()
     {
         $level = $this->getGravityLevel();
         switch ($level) {
             case 'danger':
-                $this->output->writeln("<error>DANGER: " . $this->message . "\n\nTHIS IS THE END!!!</error>");
+                $this->output->writeln("<error>DANGER: " . $this->message . "\n\n</error>");
                 break;
             case 'low-danger':
                 $this->output->writeln("<error>DANGER: " . $this->message . "</error>");
