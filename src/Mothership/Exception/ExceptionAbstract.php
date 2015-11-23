@@ -102,6 +102,7 @@ abstract class ExceptionAbstract extends Exception
      */
     public function alert()
     {
+        return;
         $level = $this->getGravityLevel();
         switch ($level) {
             case 'danger':
