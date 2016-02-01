@@ -25,9 +25,9 @@
   },
   "minimum-stability" : "dev",
   "autoload": {
-    "psr-4": { "Mothership\\": "src/" }
-  },
-  "autoload-dev": {
-    "psr-4": { "Mothership\\Tests\\": "src-tests/Tests/" }
+    "psr-4": {
+      "Mothership\\Exception": "src/Exception/",
+      "Mothership\\Tests": "src/Tests/"
+    }
   }
 }
