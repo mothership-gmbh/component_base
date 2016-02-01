@@ -28,6 +28,6 @@
     "psr-4": { "Mothership\\": "src/" }
   },
   "autoload-dev": {
-    "psr-4": { "Mothership\\Tests\\": "src-tests/" }
+    "psr-4": { "Mothership\\Tests\\": "src-tests/Tests/" }
   }
 }
