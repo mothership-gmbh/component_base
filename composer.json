@@ -26,5 +26,8 @@
   "minimum-stability" : "dev",
   "autoload": {
     "psr-0": { "Mothership\\": "src/" }
+  },
+  "autoload-dev": {
+    "psr-0": { "Mothership\\Tests\\": "src/Mothership/Tests" }
   }
 }
