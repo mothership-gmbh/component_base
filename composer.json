@@ -27,7 +27,8 @@
   "autoload": {
     "psr-4": {
       "Mothership\\Exception\\": "src/Mothership/Exception/",
-      "Mothership\\Tests\\": "src/Mothership/Tests/"
+      "Mothership\\Tests\\": "src/Mothership/Tests/",
+      "Mothership\\Mage\\":      "src/Mothership/Mage/"
     }
   }
 }
