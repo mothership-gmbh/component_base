@@ -61,39 +61,50 @@ class Option
 
         foreach($options as $option)
         {
-            $label[] = $option['label'];
+            $labels[] = $option['label'];
         }
         return $labels;
     }
 
     /**
-     * Create a Magento attribute optin.
+     * Create a Magento attribute option. A default value for store_code 0 MUST be set
      *
-     * @param string $attribute_code    The attribute code must be a string like 'product_group'
-     * @param mixed  $attribute_options an array with [store_id] => attribute_option_label
-     *                                  example: [0] => 'Handtasche'
+     * @param string $attribute_code     The attribute code must be a string like 'product_group'
+     * @param mixed  $attribute_options  an array with [store_id] => attribute_option_label
+     *                                   example: [0] => 'Handtasche'
      *                                           [1] => 'Shopping Bag'
+     * @param int    $default_store_code
+     *
+     * @link http://www.webspeaks.in/2012/05/addupdate-attribute-option-values.html
      *
      * @return void
      */
-    protected function _addAttributeOption($attribute_code, array $attribute_options)
+    public function addOptions($attribute_code, array $attribute_options, $default_store_code = 0)
     {
         if ($attribute_options === null) {
             throw new \Exception('No values given');
         }
 
-        $attr_model = Mage::getModel('catalog/resource_eav_attribute');
+        // use the default store code as reference
+        $newAttributes = [];
+        $labels = $this->getLabels($attribute_code);
+        foreach ($attribute_options as $_option) {
+            if (in_array($_option[$default_store_code], $labels)) {
+                // do not create the attribute if it exists
+                return;
+            }
+        }
+
+        $attr_model = \Mage::getModel('catalog/resource_eav_attribute');
         $attr       = $attr_model->loadByCode('catalog_product', $attribute_code);
         $attr_id    = $attr->getAttributeId();
 
         $option['attribute_id'] = $attr_id;
-        $option['value']['any_option_name'][0] = $attribute_options;
-
-        if (null !== $attribute_option_value_en) {
-            $option['value']['any_option_name'][2] = $attribute_option_value_en;
+        foreach ($attribute_options as $_store => $_label) {
+            $option['value']['any_option_name'][$_store] = $_label;
         }
 
-        $setup = new Mage_Eav_Model_Entity_Setup('core_setup');
+        $setup = new \Mage_Eav_Model_Entity_Setup('core_setup');
         $setup->addAttributeOption($option);
     }
 }
