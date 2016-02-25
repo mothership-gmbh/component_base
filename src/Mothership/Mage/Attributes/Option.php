@@ -61,7 +61,7 @@ class Option
 
         foreach($options as $option)
         {
-            $labels[] = $option['label'];
+            $labels[$option['value']] = $option['label'];
         }
         return $labels;
     }
@@ -86,7 +86,6 @@ class Option
         }
 
         // use the default store code as reference
-        $newAttributes = [];
         $labels = $this->getLabels($attribute_code);
         foreach ($attribute_options as $_option) {
             if (in_array($_option[$default_store_code], $labels)) {
