@@ -28,15 +28,8 @@
   "autoload": {
     "psr-4": {
       "Mothership\\Exception\\": "src/Mothership/Exception/",
-      "Mothership\\Mage\\": "src/Mothership/Mage/"
-    },
-    "exclude-from-classmap": [
-      "src/Mothership/Tests/"
-    ]
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Mothership\\Tests\\": "src/Motheship/Tests/Examples"
+      "Mothership\\Mage\\": "src/Mothership/Mage/",
+      "Mothership\\Tests\\": "src/Mothership/Tests/"
     }
   }
 }
