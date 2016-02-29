@@ -26,9 +26,13 @@
   },
   "minimum-stability" : "dev",
   "autoload": {
-    "psr-0": { "Mothership\\": "src/" },
-    "exclude-from-classmap": [
-      "src/Tests/"
-    ]
+    "psr-4": {
+      "Mothership\\Exception\\": "src/Mothership/Exception/",
+      "Mothership\\Tests\\": "src/Mothership/Tests/",
+      "Mothership\\Mage\\":      "src/Mothership/Mage/",
+      "exclude-from-classmap": [
+        "src/Tests/"
+      ]
+    }
   }
 }
