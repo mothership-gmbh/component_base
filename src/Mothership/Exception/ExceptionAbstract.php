@@ -100,7 +100,7 @@ abstract class ExceptionAbstract extends Exception
         $level = $this->getGravityLevel();
         switch ($level) {
             case 'danger':
-                $this->output->writeln('<error>\xF0\x9F\x8D\xBA ' . $this->message . "\n\n</error>");
+                $this->output->writeln('<error>' . $this->message . '</error>');
                 break;
             case 'low-danger':
                 $this->output->writeln('<error>' . $this->message . '</error>');
