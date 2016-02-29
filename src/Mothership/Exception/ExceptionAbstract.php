@@ -9,7 +9,6 @@ namespace Mothership\Exception;
 
 use Exception;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Class Mothership\Exception\ExceptionAbstract.
@@ -23,22 +22,29 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class ExceptionAbstract extends Exception
 {
+    /**
+     * @var $int
+     */
     protected $gravity; //score from 0 to 100 where 100 is the most dangerous
+
+    /**
+     * @var \Symfony\Component\Console\Output\ConsoleOutput
+     */
     protected $output;
 
     /**
-     * @param string               $message
-     * @param int                  $code
-     * @param Exception|null       $previous
-     * @param OutputInterface|null $output
-     * @param bool|true            $send_alert if is true the exception will be write on the $output
+     * @param string             $message
+     * @param int                $code
+     * @param Exception|null     $previous
+     * @param ConsoleOutput|null $output
+     * @param bool|true          $sendAlert if is true the exception will be write on the $output
      */
     public function __construct(
         $message = '',
         $code = 0,
         Exception $previous = null,
-        OutputInterface $output = null,
-        $send_alert = true
+        ConsoleOutput $output = null,
+        $sendAlert = true
     ) {
         parent::__construct($message, $code, $previous);
         if ($previous != null) {
@@ -52,7 +58,7 @@ abstract class ExceptionAbstract extends Exception
 
         $this->gravity = $this->code;
 
-        if ($send_alert && $previous == null) {
+        if ($sendAlert && $previous == null) {
             $this->alert();
         }
     }
@@ -87,22 +93,20 @@ abstract class ExceptionAbstract extends Exception
     }
 
     /**
-     * Exception class for some outputs
-     *
-     * @return void
+     * Exception class for some outputs.
      */
     public function alert()
     {
         $level = $this->getGravityLevel();
         switch ($level) {
             case 'danger':
-                $this->output->writeln('<error>DANGER: ' . $this->message . "\n\nTHIS IS THE END!!!</error>");
+                $this->output->writeln('<error>\xF0\x9F\x8D\xBA ' . $this->message . "\n\n</error>");
                 break;
             case 'low-danger':
-                $this->output->writeln('<error>DANGER: ' . $this->message . '</error>');
+                $this->output->writeln('<error>' . $this->message . '</error>');
                 break;
             case 'waring':
-                $this->output->writeln('<comment>WARNING: ' . $this->message . '</comment>');
+                $this->output->writeln('<comment>' . $this->message . '</comment>');
                 break;
             case 'info':
                 $this->output->writeln('<info>INFO: ' . $this->message . '</info>');
