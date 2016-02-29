@@ -9,7 +9,7 @@ Via composer add:
 Via composer add:
 ```
 "require": {
-    "mothership/component_base" : "0.1.*"
+    "mothership/component_base" : "1.1.*"
   }
 ```
 or
