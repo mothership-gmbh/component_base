@@ -24,15 +24,19 @@
     "phpunit/dbunit": "dev-master",
     "escapestudios/symfony2-coding-standard": "~2.0"
   },
-  "minimum-stability" : "dev",
+  "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "Mothership\\Exception\\": "src/Mothership/Exception/",
-      "Mothership\\Tests\\": "src/Mothership/Tests/",
-      "Mothership\\Mage\\":      "src/Mothership/Mage/",
+      "Mothership\\Mage\\": "src/Mothership/Mage/",
       "exclude-from-classmap": [
-        "src/Tests/"
+        "src/Mothership/Tests/"
       ]
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Mothership\\Tests\\": "src/Motheship/Tests/Examples"
     }
   }
 }
