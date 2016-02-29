@@ -14,12 +14,11 @@ namespace Mothership\Mage;
  * @copyright 2016 Mothership GmbH
  *
  * @link      http://www.mothership.de/
- *
  */
 class Attributes
 {
     /**
-     * Check if the attribute values exists
+     * Check if the attribute values exists.
      *
      * @param string $b2csku
      *
@@ -29,8 +28,8 @@ class Attributes
     {
         $connection = \Mage::getSingleton('core/resource')->getConnection('core_write')->getConnection();
 
-
-        $sql = "
+        $sql
+              = "
             SELECT *
             FROM   (SELECT ce.sku,
                ea.attribute_id,
@@ -90,9 +89,11 @@ class Attributes
         WHERE  ce.sku = :sku) AS tab HAVING store_id IS NOT NULL
         ";
         $stmt = $connection->prepare($sql);
-        $stmt->execute([
-            'sku' => $b2csku
-        ]);
+        $stmt->execute(
+            [
+                'sku' => $b2csku,
+            ]
+        );
 
         $rows = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
@@ -100,6 +101,7 @@ class Attributes
         foreach ($rows as $_row) {
             $data[$_row['attribute_code']][$_row['store_id']] = $_row;
         }
+
         return $data;
     }
 }

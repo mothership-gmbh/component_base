@@ -1,47 +1,26 @@
 <?php
 /**
- * Magento
+ * This file is part of the Mothership GmbH code.
  *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
- *
- * @category  Mothership
- * @package   Mothership_Base
- * @author    Don Bosco van Hoi <vanhoi@mothership.de>
- * @copyright Copyright (c) 2016 Mothership GmbH
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @link      http://www.mothership.de/
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 namespace Mothership\Mage\Attributes;
 
 /**
- * Class Option
+ * Class Mothership\Mage\Attributes\Option.
  *
  * @category  Mothership
- * @package   Mothership_Option
+ *
  * @author    Don Bosco van Hoi <vanhoi@mothership.de>
  * @copyright 2016 Mothership GmbH
- * @link      http://www.mothership.de/
  *
- *            Class Helper to generate Magento attributes
+ * @link      http://www.mothership.de/
  */
 class Option
 {
     /**
-     * Get the Magento attribute code
+     * Get the Magento attribute code.
      *
      * @param string $attribute_code The attribute code must be a string like 'product_group'
      *
@@ -49,35 +28,33 @@ class Option
      */
     public function getLabels($attribute_code)
     {
-        $labels = [];
-        $attribute_model        = \Mage::getModel('eav/entity_attribute');
-        $attribute_options_model= \Mage::getModel('eav/entity_attribute_source_table') ;
+        $labels                  = [];
+        $attribute_model         = \Mage::getModel('eav/entity_attribute');
+        $attribute_options_model = \Mage::getModel('eav/entity_attribute_source_table');
 
-        $attribute_code         = $attribute_model->getIdByCode('catalog_product', $attribute_code);
-        $attribute              = $attribute_model->load($attribute_code);
+        $attribute_code = $attribute_model->getIdByCode('catalog_product', $attribute_code);
+        $attribute      = $attribute_model->load($attribute_code);
 
         $attribute_options_model->setAttribute($attribute);
-        $options                = $attribute_options_model->getAllOptions(false);
+        $options = $attribute_options_model->getAllOptions(false);
 
-        foreach($options as $option)
-        {
+        foreach ($options as $option) {
             $labels[$option['value']] = $option['label'];
         }
+
         return $labels;
     }
 
     /**
-     * Create a Magento attribute option. A default value for store_code 0 MUST be set
+     * Create a Magento attribute option. A default value for store_code 0 MUST be set.
      *
      * @param string $attribute_code     The attribute code must be a string like 'product_group'
      * @param mixed  $attribute_options  an array with [store_id] => attribute_option_label
      *                                   example: [0] => 'Handtasche'
-     *                                           [1] => 'Shopping Bag'
+     *                                   [1] => 'Shopping Bag'
      * @param int    $default_store_code
      *
      * @link http://www.webspeaks.in/2012/05/addupdate-attribute-option-values.html
-     *
-     * @return void
      */
     public function addOptions($attribute_code, array $attribute_options, $default_store_code = 0)
     {

@@ -1,61 +1,44 @@
 <?php
 /**
- * Magento
+ * This file is part of the Mothership GmbH code.
  *
- * NOTICE OF LICENSE
- *
- * This source file is subject to the Open Software License (OSL 3.0)
- * that is bundled with this package in the file LICENSE.txt.
- * It is also available through the world-wide-web at this URL:
- * http://opensource.org/licenses/osl-3.0.php
- * If you did not receive a copy of the license and are unable to
- * obtain it through the world-wide-web, please send an email
- * to license@magentocommerce.com so we can send you a copy immediately.
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade Magento to newer
- * versions in the future. If you wish to customize Magento for your
- * needs please refer to http://www.magentocommerce.com for more information.
- *
- * @category  Mothership
- * @package   Mothership_Base
- * @author    Don Bosco van Hoi <vanhoi@mothership.de>
- * @copyright Copyright (c) 2016 Mothership GmbH
- * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
- * @link      http://www.mothership.de/
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 namespace Mothership\Mage\Products;
 
 /**
- * Class Products
+ * Class Mothership\Mage\Products\Entity.
  *
  * @category  Mothership
- * @package   Mothership_Mage
+ *
  * @author    Don Bosco van Hoi <vanhoi@mothership.de>
  * @copyright 2016 Mothership GmbH
  *
  * @link      http://www.mothership.de/
- *
- *            Get entity ids by various values using raw SQL
  */
 class Entity
 {
     /**
-     * Retreive a collection of Magento attributes by code and value
+     * Retreive a collection of Magento attributes by code and value.
      *
-     * @param string $attributeCode  The attribute code
+     * @param string $attributeCode The attribute code
      * @param string $attributeValue The attribute value
-     * @param string $excludedSku    Which Magento-Sku do you want to exclude
-     * @param int    $limit          MySQL Offset
+     * @param string $excludedSku Which Magento-Sku do you want to exclude
+     * @param int    $limit MySQL Offset
      *
      * @return mixed
      */
-    public function getCollectionByAttributeCodeAndValue($attributeCode, $attributeValue = null, $excludedSku = null, $limit = 100)
-    {
+    public function getCollectionByAttributeCodeAndValue(
+        $attributeCode,
+        $attributeValue = null,
+        $excludedSku = null,
+        $limit = 100
+    ) {
         $connection = \Mage::getSingleton('core/resource')->getConnection('core_write')->getConnection();
 
-        $sql = "
+        $sql
+            = "
         SELECT ce.sku,
                 ce.entity_id,
                ce.type_id,
@@ -99,15 +82,14 @@ class Entity
         ";
 
         if (null !== $excludedSku) {
-            $sql .= " AND ce.sku != :excluded_sku";
+            $sql .= ' AND ce.sku != :excluded_sku';
         }
-
 
         if (null !== $attributeValue) {
-            $sql .= " HAVING compiled_value = :attribute_value";
+            $sql .= ' HAVING compiled_value = :attribute_value';
         }
 
-        $sql .=" LIMIT :limit";
+        $sql .= ' LIMIT :limit';
 
         $sth = $connection->prepare($sql);
 
@@ -123,6 +105,7 @@ class Entity
         }
 
         $sth->execute();
+
         return $sth->fetchAll(\PDO::FETCH_ASSOC);
     }
 }

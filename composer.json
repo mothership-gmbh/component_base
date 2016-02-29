@@ -26,6 +26,9 @@
   },
   "minimum-stability" : "dev",
   "autoload": {
-    "psr-0": { "Mothership\\": "src/" }
+    "psr-0": { "Mothership\\": "src/" },
+    "exclude-from-classmap": [
+      "src/Tests/"
+    ]
   }
 }
