@@ -28,6 +28,6 @@ class ExceptionTest extends \PHPUnit_Framework_TestCase
     public function basic()
     {
         $exception = new \Mothership\Exception\Exception();
-        $this->assertTrue($exception instanceof ExceptionAbstract);
+        $this->assertTrue($exception instanceof \Mothership\Exception\ExceptionAbstract);
     }
 }
