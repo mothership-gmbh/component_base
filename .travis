@@ -23,4 +23,4 @@ before_script:
   #- modman deploy-all
 
 #script:
-#  - phpunit --coverage-text
+  - phpunit --coverage-text

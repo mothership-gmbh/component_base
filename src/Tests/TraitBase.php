@@ -20,7 +20,10 @@ namespace Mothership\Tests;
 trait TraitBase
 {
     /**
-     * call private methods.
+     * Helper to invoke private methods. You should avoid to build tests around invoking private methods.
+     * Instead it might be better to test coverage by executing the caller.
+     *
+     * Testing private methods intensely might also be a sign of bad code design.
      *
      * @param object &$object    Object
      * @param string $methodName methods
@@ -38,7 +41,8 @@ trait TraitBase
     }
 
     /**
-     * Get private property value.
+     * Helper to retreive a private property. Also try to avoid using this method if possible.
+     * If there is a value you want to inspect, think about creating a proper getter
      *
      * @param string $object
      * @param string $propertyName
