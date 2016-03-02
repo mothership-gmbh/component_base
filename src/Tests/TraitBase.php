@@ -1,26 +1,31 @@
 <?php
-
+/**
+ * This file is part of the Mothership GmbH code.
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 namespace Mothership\Tests;
 
 /**
- * PHP Version 5.4
- *
- * Class ${NAME}
+ * Class Mothership\Tests\TraitBase.
  *
  * @category  Mothership
- * @package   Mothership_${NAME}
+ *
  * @author    Don Bosco van Hoi <vanhoi@mothership.de>
- * @copyright 2015 Mothership GmbH
+ * @copyright 2016 Mothership GmbH
+ *
  * @link      http://www.mothership.de/
  */
-trait TraitBase {
-
+trait TraitBase
+{
     /**
-     * call private methods
+     * call private methods.
      *
-     * @param object &$object Object
+     * @param object &$object    Object
      * @param string $methodName methods
-     * @param array $parameters params
+     * @param array  $parameters params
+     *
      * @return mixed Method return.
      */
     protected function invokeMethod(&$object, $methodName, array $parameters = array())
@@ -28,11 +33,12 @@ trait TraitBase {
         $reflection = new \ReflectionClass(get_class($object));
         $method = $reflection->getMethod($methodName);
         $method->setAccessible(true);
+
         return $method->invokeArgs($object, $parameters);
     }
 
     /**
-     * Get private property value
+     * Get private property value.
      *
      * @param string $object
      * @param string $propertyName
@@ -44,12 +50,14 @@ trait TraitBase {
         $reflection = new \ReflectionClass(get_class($object));
         $property = $reflection->getProperty($propertyName);
         $property->setAccessible(true);
+
         return $property->getValue($object);
     }
 
     /**
      * @param $object
      * @param $propertyName
+     *
      * @return string
      */
     protected function getPropertyClass(&$object, $propertyName)
@@ -57,6 +65,7 @@ trait TraitBase {
         $reflection = new \ReflectionClass(get_class($object));
         $property = $reflection->getProperty($propertyName);
         $property->setAccessible(true);
+
         return get_class($property->getValue($object));
     }
 }

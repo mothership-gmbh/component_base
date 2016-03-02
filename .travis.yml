@@ -7,10 +7,6 @@ php:
   - 5.6
   - 7.0
 
-env:
-  matrix:
-    - MAGENTO_VERSION="magento-mirror-1.9.2.2" INSTALL_SAMPLE_DATA=no
-    - MAGENTO_VERSION="magento-mirror-1.9.2.3" INSTALL_SAMPLE_DATA=no
 
 before_script:
   - composer install --no-dev
@@ -23,4 +19,4 @@ before_script:
   #- modman deploy-all
 
 #script:
-#  - phpunit --coverage-text
+  - phpunit --coverage-text
