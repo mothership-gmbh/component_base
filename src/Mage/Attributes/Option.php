@@ -64,8 +64,8 @@ class Option
 
         // use the default store code as reference
         $labels = $this->getLabels($attribute_code);
-        foreach ($attribute_options as $_option) {
-            if (in_array($_option[$default_store_code], $labels)) {
+        foreach ($attribute_options as $_store => $label) {
+            if (in_array($label, $labels)) {
                 // do not create the attribute if it exists
                 return;
             }
